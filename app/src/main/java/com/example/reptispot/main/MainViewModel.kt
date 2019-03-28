@@ -5,13 +5,15 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.reptispot.R
 import com.example.reptispot.util.ImageHelper
 import com.example.reptispot.util.ReptiSpot
 import com.microsoft.projectoxford.face.FaceServiceRestClient
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
-import kotlin.concurrent.thread
 
 class MainViewModel(app: Application) : AndroidViewModel(app) {
 
@@ -28,17 +30,8 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
         val endpoint = getApplication<Application>().resources.getString(R.string.endpoint)
         val key = getApplication<Application>().resources.getString(R.string.subscription_key)
         val client = FaceServiceRestClient(endpoint, key)
-//                val deferred = GlobalScope.async(Dispatchers.Default) {
-//                    val results = ReptiSpot(
-//                        client,
-//                        0.5F,
-//                        "known-persons",
-//                        inputStream
-//                    ).process()
-//                    Log.d("AZAZAZ", results[0].matchRate.toString())
-//                }
 
-        thread(start = true) {
+        viewModelScope.launch(Dispatchers.IO) {
             val results = ReptiSpot(
                 client,
                 0.5F,
