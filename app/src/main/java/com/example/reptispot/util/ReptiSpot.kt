@@ -1,6 +1,6 @@
-package com.example.reptispot
+package com.example.reptispot.util
 
-import android.support.annotation.WorkerThread
+import androidx.annotation.WorkerThread
 import com.google.gson.Gson
 import com.microsoft.projectoxford.face.FaceServiceClient
 import com.microsoft.projectoxford.face.contract.TrainingStatus

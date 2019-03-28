@@ -32,10 +32,19 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.1"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1'
     implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha03'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    def lifecycle_version = "2.0.0"
+    // ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
+    //todo: move to updated face lib directly from a repository
     implementation project(':lib')
 }

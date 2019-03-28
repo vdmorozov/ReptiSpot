@@ -1,4 +1,4 @@
-package com.example.reptispot
+package com.example.reptispot.util
 
 import com.microsoft.projectoxford.face.contract.Candidate
 import com.microsoft.projectoxford.face.contract.Face
