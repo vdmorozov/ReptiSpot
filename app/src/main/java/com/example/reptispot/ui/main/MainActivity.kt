@@ -1,4 +1,4 @@
-package com.example.reptispot.main
+package com.example.reptispot.ui.main
 
 import android.app.Activity
 import android.content.Intent
@@ -7,15 +7,18 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.view.View
+import android.widget.Button
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.reptispot.R
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
-import java.util.*
-
+import java.util.Date
 
 class MainActivity : AppCompatActivity() {
     // Flag to indicate which task is to be performed.
@@ -32,9 +35,21 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this)
             .get(MainViewModel::class.java)
 
+        val result = findViewById<ImageView>(R.id.iv_result)
+        viewModel.resultImage.observe(this, Observer { bitmap ->
+            result.setImageBitmap(bitmap)
+        })
+
+        val buttonCamera = findViewById<Button>(R.id.btn_camera)
         if (packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
-            dispatchTakePictureIntent()
-        } else {
+            buttonCamera.visibility = View.VISIBLE
+            buttonCamera.setOnClickListener {
+                dispatchTakePictureIntent()
+            }
+        }
+
+        val buttonGallery = findViewById<Button>(R.id.btn_gallery)
+        buttonGallery.setOnClickListener {
             //todo: wrap into dispatch method
             //get photo from album
             val intent = Intent(Intent.ACTION_GET_CONTENT)

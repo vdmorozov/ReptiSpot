@@ -47,7 +47,7 @@ import java.io.InputStream;
 /**
  * Defined several functions to load, draw, save, resize, and rotate images.
  */
-public class ImageHelper {
+public class ImageHelperLegacy {
 
     // The maximum side length of the image to detect, to keep the size of image less than 4MB.
     // Resize the image if its side length is larger than the maximum.
@@ -279,7 +279,7 @@ public class ImageHelper {
 
     // Resize face rectangle, for better view for human
     // To make the rectangle larger, faceRectEnlargeRatio should be larger than 1, recommend 1.3
-    private static FaceRectangle calculateFaceRectangle(
+    static FaceRectangle calculateFaceRectangle(
             Bitmap bitmap, FaceRectangle faceRectangle, double faceRectEnlargeRatio) {
         // Get the resized side length of the face rectangle
         double sideLength = faceRectangle.width * faceRectEnlargeRatio;
