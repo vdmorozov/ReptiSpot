@@ -15,6 +15,7 @@ import androidx.core.content.FileProvider
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.reptispot.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -40,15 +41,15 @@ class MainActivity : AppCompatActivity() {
             result.setImageBitmap(bitmap)
         })
 
-        val buttonCamera = findViewById<Button>(R.id.btn_camera)
+        val buttonCamera = findViewById<FloatingActionButton>(R.id.btn_camera)
         if (packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
-            buttonCamera.visibility = View.VISIBLE
+            //buttonCamera.visibility = View.VISIBLE todo: hide camera FAB if unavailable
             buttonCamera.setOnClickListener {
                 dispatchTakePictureIntent()
             }
         }
 
-        val buttonGallery = findViewById<Button>(R.id.btn_gallery)
+        val buttonGallery = findViewById<FloatingActionButton>(R.id.btn_gallery)
         buttonGallery.setOnClickListener {
             //todo: wrap into dispatch method
             //get photo from album
